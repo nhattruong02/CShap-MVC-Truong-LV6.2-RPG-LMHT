@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IState
 {
-    void OnEnter(Player player);
-    void OnExercute(Player player);
-    void OnExit(Player player);
+    void OnEnter();
+    void OnExercute();
+    void OnExit();
 }
