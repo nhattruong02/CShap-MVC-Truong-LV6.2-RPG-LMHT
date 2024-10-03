@@ -29,7 +29,7 @@ public class InputTargeting : MonoBehaviour
                         selectedHero.GetComponent<PlayerCombat>().targetedEnemy = hit.collider.gameObject;
                     }
                     else if(hit.collider.gameObject.GetComponent<Targetable>() == null){
-                        selectedHero.GetComponent<PlayerCombat>().targetedEnemy = null;
+                        selectedHero.GetComponent<PlayerCombat>().targetedEnemy = null; 
 
                     }
                 }

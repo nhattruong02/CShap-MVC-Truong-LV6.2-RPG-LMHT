@@ -8,4 +8,7 @@ public class Common
     public static string mouseScroll = "Mouse ScrollWheel";
     public static string enemy = "Enemy";
     public static string player = "Player";
+    public static string normalAttack = "NormalAttack";
+    public static string getHit = "GetHit";
+    public static string die = "Die";
 }

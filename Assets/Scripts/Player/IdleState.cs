@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class IdleState : IState
 {
-    PlayerAnimator _controller;
+    PlayerAnimator _player;
     public IdleState(PlayerAnimator player) {
-        _controller = player;   
+        _player = player;   
  
     }
     
     public void OnEnter()
     {
-        _controller.anim.SetFloat(Common.speed, 0);
+        _player.anim.SetFloat(Common.speed, 0);
     }
 
     public void OnExercute()
     {
-        _controller.anim.SetFloat(Common.speed, 0);
+        _player.anim.SetFloat(Common.speed, 0);
     }
 
     public void OnExit()

@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class RunState : IState
 {
-    PlayerAnimator _controller;
+    PlayerAnimator _player;
     private float _speed;
     public RunState(PlayerAnimator player, float speed)
     {
-        _controller = player;
+        _player = player;
         _speed = speed;
 
     }
     public void OnEnter()
     {
-        _controller.anim.SetFloat(Common.speed, _speed);
+        _player.anim.SetFloat(Common.speed, _speed);
     }
 
     public void OnExercute()
     {
         if(_speed > 0)
         {
-            _controller.anim.SetFloat(Common.speed, _speed);
+            _player.anim.SetFloat(Common.speed, _speed);
         }
     }
 

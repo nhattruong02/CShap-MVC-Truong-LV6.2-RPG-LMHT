@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealthPlayer : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     private void LateUpdate()
     {

@@ -23,15 +23,4 @@ public class PlayerAnimator : MonoBehaviour
         _stateManager.ChangeState(new IdleState(this));
         _stateManager.ChangeState(new RunState(this, speed));
     }
-/*    private void ChangeAnimation(float speed)
-    {
-        if(speed == 0)
-        {
-            _stateManager.ChangeState(new IdleState(this));
-        }
-        else
-        {
-            _stateManager.ChangeState(new RunState(this,speed));
-        }
-    }*/
 }
