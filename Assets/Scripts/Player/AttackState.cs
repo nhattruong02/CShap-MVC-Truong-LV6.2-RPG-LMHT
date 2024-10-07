@@ -18,15 +18,15 @@ public class AttackState : IState
 
     public void OnExercute()
     {
-        _playerCombat.performNomalAttack = false;
+        _playerCombat.performNormalAttack = false;
         _controller.anim.SetTrigger(Common.normalAttack);
         if (_playerCombat.targetedEnemy == null)
         {
-            _playerCombat.performNomalAttack = true;
+            _playerCombat.performNormalAttack = true;
         }
-        if(_playerCombat.statsScript.attackTime / ((100 + _playerCombat.statsScript.attackTime) * 0.01f) <= 0.1f);
+        if(_playerCombat.statsScript.attackTime / ((100 + _playerCombat.statsScript.attackTime) * 0.01f) <= 0.1f)
         {
-            _playerCombat.performNomalAttack = true;
+            _playerCombat.performNormalAttack = true;
         }
     }
 

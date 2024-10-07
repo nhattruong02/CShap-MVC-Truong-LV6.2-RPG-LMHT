@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public enum PlayerAttackType { NormalAttack, Melee, Ranged};
+    public enum PlayerAttackType { NormalAttack, Ranged, Heath, Mage };
     public PlayerAttackType heroAttackType;
 
     public GameObject targetedEnemy;
@@ -16,13 +16,27 @@ public class PlayerCombat : MonoBehaviour
     private Player _playerScript;
     public Stats statsScript;
     private Animator _animator;
-   
-
     public bool basicAtkIdle = false;
-    public bool isPlayerAlive;
-    public bool performNomalAttack = true;
+    public bool isPlayerAlive = true;
+    public bool performNormalAttack = true;
 
     [SerializeField] private Animator enemyAnimator;
+
+    [Header("Ranged Variables")]
+    public bool performRangedAttack = true;
+    [SerializeField] GameObject rangedPrefab;
+    [SerializeField] Transform spawnSkill1;
+    [SerializeField] float attackRanged;
+
+    [Header("Mage Variables")]
+    public bool performMage = true;
+    [SerializeField] GameObject magePrefab;
+    [SerializeField] float attackMage;
+
+    [Header("Health Variables")]
+    public bool performHealth = true;
+    [SerializeField] GameObject healthPrefab;
+
 
     private void OnDrawGizmos()
     {
@@ -40,61 +54,157 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(targetedEnemy != null)
+        if (targetedEnemy != null && isPlayerAlive)
         {
-            if(Vector3.Distance(gameObject.transform.position, targetedEnemy.transform.position) > attackRange)
+            if (heroAttackType == PlayerAttackType.NormalAttack)
             {
-                _playerScript.Agent.SetDestination(targetedEnemy.transform.position);
-                _playerScript.Agent.stoppingDistance = attackRange;
-
-                Quaternion rotationToLookAt = Quaternion.LookRotation(targetedEnemy.transform.position - transform.position);
-                float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y,
-                    rotationToLookAt.eulerAngles.y,
-                    ref _playerScript.rotateVelocity,
-                    rotateSpeedForAttack * (Time.deltaTime * 5));
-                transform.eulerAngles = new Vector3(0, rotationY, 0);
-            }
-            else
-            {
-                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+                attackRange = 2;
+                if (Vector3.Distance(gameObject.transform.position, targetedEnemy.transform.position) > attackRange)
                 {
-                    if (heroAttackType == PlayerAttackType.NormalAttack)
+                    _playerScript.Agent.SetDestination(targetedEnemy.transform.position);
+                    _playerScript.Agent.stoppingDistance = attackRange;
+
+                    Quaternion rotationToLookAt = Quaternion.LookRotation(targetedEnemy.transform.position - transform.position);
+                    float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y,
+                        rotationToLookAt.eulerAngles.y,
+                        ref _playerScript.rotateVelocity,
+                        rotateSpeedForAttack * (Time.deltaTime * 5));
+                    transform.eulerAngles = new Vector3(0, rotationY, 0);
+                }
+                else
+                {
+                    if (performNormalAttack)
                     {
-                        if (performNomalAttack)
-                        {
-                            StartCoroutine(NormalAttackInterval());
-                        }
+                        StartCoroutine(NormalAttackInterval());
                     }
                 }
-
+            }
+            if (heroAttackType == PlayerAttackType.Ranged)
+            {
+                if (performRangedAttack)
+                {
+                    attackRange = attackRanged;
+                    _playerScript.Agent.stoppingDistance = attackRange;
+                }
+            }
+            if(heroAttackType == PlayerAttackType.Mage)
+            {
+                if (performMage)
+                {
+                    attackRange = attackRanged;
+                    _playerScript.Agent.stoppingDistance = attackRange;
+                }
             }
         }
     }
 
-    IEnumerator NormalAttackInterval()
+    public IEnumerator HealthInterval()
     {
-        performNomalAttack = false;
-        _animator.SetTrigger(Common.normalAttack);
-        if(targetedEnemy == null)
+        performHealth = false;
+        _animator.SetTrigger(Common.recoverHP);
+        yield return new WaitForSeconds(statsScript.attackTime / ((100 + statsScript.attackTime) * 0.01f));
+        performHealth = true;
+    }
+
+    public IEnumerator MageAttackInterval()
+    {
+        performMage = false;
+        _animator.SetTrigger(Common.mageAttack);
+        if (targetedEnemy == null)
         {
-            performNomalAttack = true;
+            performMage = false;
         }
         yield return new WaitForSeconds(statsScript.attackTime / ((100 + statsScript.attackTime) * 0.01f));
-        performNomalAttack = true;
+        performMage = true;
+    }
+
+    public IEnumerator RangedAttackInterval()
+    {
+        performRangedAttack = false;
+        _animator.SetTrigger(Common.rangedAttack);
+        if (targetedEnemy == null)
+        {
+            performRangedAttack = false;
+        }
+        yield return new WaitForSeconds(statsScript.attackTime / ((100 + statsScript.attackTime) * 0.01f));
+        performRangedAttack = true;
+    }
+
+    IEnumerator NormalAttackInterval()
+    {
+        performNormalAttack = false;
+        _animator.SetTrigger(Common.normalAttack);
+        if (targetedEnemy == null)
+        {
+            performNormalAttack = false;
+        }
+        yield return new WaitForSeconds(statsScript.attackTime / ((100 + statsScript.attackTime) * 0.01f));
+        performNormalAttack = true;
 
     }
 
     //event animator
     public void NormalAttack()
     {
-        if(targetedEnemy != null)
+        if (targetedEnemy != null)
         {
-            if (targetedEnemy.GetComponent<Targetable>().CompareTag(Common.enemy))
+            if (targetedEnemy.GetComponent<Targetable>().CompareTag(Common.enemy) )
             {
-                targetedEnemy.GetComponent<Stats>().health -= statsScript.attackDmg;
+                _playerScript.transform.rotation = targetedEnemy.transform.rotation;
+                statsScript.TakeDamage(targetedEnemy, statsScript.attackDmg);
                 enemyAnimator.SetTrigger(Common.getHit);
             }
         }
-        performNomalAttack = true;
+        performNormalAttack = true;
+    }
+
+    //event animator
+    public void RangedAttack()
+    {
+        if (targetedEnemy != null)
+        {
+            if (targetedEnemy.GetComponent<Targetable>().CompareTag(Common.enemy))
+            {
+                _playerScript.transform.rotation = targetedEnemy.transform.rotation;
+                spawnRangedAttack(targetedEnemy);
+            }
+        }
+        performRangedAttack = true;
+    }
+
+    //event animator
+    public void MageAttack()
+    {
+        if (targetedEnemy != null)
+        {
+            if (targetedEnemy.GetComponent<Targetable>().CompareTag(Common.enemy))
+            {
+                _playerScript.transform.rotation = targetedEnemy.transform.rotation;
+                spawnMageAttack(targetedEnemy);
+            }
+        }
+        performRangedAttack = true;
+    }
+
+    //event animator
+    public void RecoveryHP()
+    {
+        healthPrefab.GetComponent<Skill2>().player = _playerScript.gameObject;
+        performHealth = true;
+        Instantiate(healthPrefab);
+    }
+
+
+
+    private void spawnMageAttack(GameObject targetedEnemy)
+    {
+        Instantiate(magePrefab);
+        magePrefab.GetComponent<Skill3>().target = targetedEnemy;
+    }
+
+    private void spawnRangedAttack(GameObject targetedEnemy)
+    {
+        Instantiate(rangedPrefab, spawnSkill1.transform.position, Quaternion.identity);
+        rangedPrefab.GetComponent<Skill1>().target = targetedEnemy;
     }
 }

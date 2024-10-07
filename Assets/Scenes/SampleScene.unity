@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 88078557}
   - component: {fileID: 88078556}
   - component: {fileID: 88078555}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain 1
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 179133036}
   - component: {fileID: 179133035}
   - component: {fileID: 179133034}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ability 1 Skillshot Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,14 +348,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179133031}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 815971663}
   m_Father: {fileID: 4104615375039472}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.09}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 194387364}
   - component: {fileID: 194387363}
   - component: {fileID: 194387362}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ability 2 Skillshot Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,8 +523,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -172291949
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &202981105
 GameObject:
@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 228865893}
   - component: {fileID: 228865892}
   - component: {fileID: 228865891}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ability Range Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1842,11 +1842,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5d79be32100494c96f12b49f1462a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10
   health: 10
   attackDmg: 1
   attackSpeed: 1
-  attackTime: 1
+  attackTime: 1.5
 --- !u!4 &451372212
 Transform:
   m_ObjectHideFlags: 0
@@ -2002,11 +2002,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateVelocity: 0
-  targetedPlayer: {fileID: 4104615375039472}
+  targetedPlayer: {fileID: 1639817643767468}
   attackRange: 4
   rotateSpeedForAttack: 0.075
   statsScript: {fileID: 0}
-  isPlayerAlive: 0
+  isEnemyAlive: 1
   performNomalAttack: 1
   playerAnimator: {fileID: 2519181462591396728}
 --- !u!4 &451372222
@@ -2339,7 +2339,7 @@ GameObject:
   - component: {fileID: 647441670}
   - component: {fileID: 647441672}
   - component: {fileID: 647441671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2808,7 +2808,7 @@ GameObject:
   - component: {fileID: 796034869}
   - component: {fileID: 796034871}
   - component: {fileID: 796034870}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2883,7 +2883,7 @@ GameObject:
   - component: {fileID: 815971663}
   - component: {fileID: 815971665}
   - component: {fileID: 815971664}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2897,16 +2897,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815971662}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -1044}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 911}
   m_LocalScale: {x: 3.34, y: 19.41, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 179133032}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -450}
+  m_AnchoredPosition: {x: 113, y: -450}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &815971664
@@ -2958,7 +2958,7 @@ GameObject:
   - component: {fileID: 888286855}
   - component: {fileID: 888286857}
   - component: {fileID: 888286856}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3279,7 +3279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1155992820}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3426,7 +3426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1305239245}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3538,7 +3538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1322357806}
   - component: {fileID: 1322357807}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SliderHealPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3859,7 +3859,7 @@ GameObject:
   - component: {fileID: 1631886584}
   - component: {fileID: 1631886586}
   - component: {fileID: 1631886585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3934,7 +3934,7 @@ GameObject:
   - component: {fileID: 1639663246}
   - component: {fileID: 1639663248}
   - component: {fileID: 1639663247}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3950,7 +3950,7 @@ RectTransform:
   m_GameObject: {fileID: 1639663245}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -4.9}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalScale: {x: 33, y: 33, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 228865889}
@@ -4116,7 +4116,7 @@ GameObject:
   - component: {fileID: 1723492876}
   - component: {fileID: 1723492875}
   - component: {fileID: 1723492878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerHealthCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4329,6 +4329,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949197628}
   m_CullTransparentMesh: 1
+--- !u!1 &1949225556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1949225557}
+  m_Layer: 6
+  m_Name: Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1949225557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949225556}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0.247}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4406091106597978}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2051013568
 GameObject:
   m_ObjectHideFlags: 0
@@ -4564,7 +4595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4450043821692302}
   - component: {fileID: 137226089232381660}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DG_SKIN_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4580,7 +4611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4703851433105122}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRLegFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4596,7 +4627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4129125485474602}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlSpine3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4612,7 +4643,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4992164802680162}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlSpine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4628,7 +4659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4737362991532192}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlSpine4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4644,7 +4675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4402451822981850}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4661,7 +4692,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4630485262279608}
   - component: {fileID: 136294881285628638}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLThigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4677,7 +4708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4790818750288110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4693,7 +4724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4726191536443026}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLPalm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4709,7 +4740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4564936968112282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4725,7 +4756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4459159761631316}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit43
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4742,7 +4773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4522166408348242}
   - component: {fileID: 137183500266203258}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DG_SKIN_chestarmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4758,7 +4789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4025190065577848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4774,7 +4805,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4069169127583732}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4790,7 +4821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4372141174624758}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4806,7 +4837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4642390565765288}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4824,7 +4855,7 @@ GameObject:
   - component: {fileID: 4406091106597978}
   - component: {fileID: 33071801956409804}
   - component: {fileID: 23514180351608708}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: weapon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4840,7 +4871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4847032956185008}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLCalf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4856,7 +4887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4662032404911116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLUpperarm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4872,7 +4903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4234995730341050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlTail2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4888,7 +4919,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4123044403716412}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmCollarbone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4905,7 +4936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4356256107111698}
   - component: {fileID: 136835920966133922}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRLegThigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4921,7 +4952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4474441506425462}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlTail4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4937,7 +4968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4422327505271936}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4953,7 +4984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4724324999774220}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4969,7 +5000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4696224687537538}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlTail1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4985,7 +5016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4861839969310538}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5001,7 +5032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4998578327648658}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit43
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5017,7 +5048,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4734675368479456}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRibcage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5034,7 +5065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4889647238541036}
   - component: {fileID: 136465707555905702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlPelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5052,7 +5083,7 @@ GameObject:
   - component: {fileID: 4376305408043852}
   - component: {fileID: 137680699327662214}
   - component: {fileID: 183956373493147734}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Extract5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5068,7 +5099,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4544893490125368}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLForearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5084,7 +5115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4990961266245460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlTail5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5100,7 +5131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4734486707460384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5116,7 +5147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4907691039006534}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5133,7 +5164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4042427118856214}
   - component: {fileID: 137184657359854554}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DG_SKIN_pelvisarmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5149,7 +5180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4610603424405774}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5174,7 +5205,8 @@ GameObject:
   - component: {fileID: 4150466518794584605}
   - component: {fileID: 4150466518794584606}
   - component: {fileID: 4150466518794584607}
-  m_Layer: 0
+  - component: {fileID: 4150466518794584608}
+  m_Layer: 6
   m_Name: DemonGirl
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5190,7 +5222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4467912852111156}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5206,7 +5238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4233964283526648}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5222,7 +5254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4685882779780892}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5238,7 +5270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4593970270097202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlTail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5254,7 +5286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4605283056308122}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5270,7 +5302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4056493852584834}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRLegCalf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5286,7 +5318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4479609538575650}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5302,7 +5334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4908867736817956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5318,7 +5350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4795553121595254}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5334,7 +5366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4279020794108150}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5350,7 +5382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4850129366522296}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlTail3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5366,7 +5398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4034470388160242}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5382,7 +5414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4704626164417926}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmForearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5398,7 +5430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4393449062674376}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlTail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5414,7 +5446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4200319969172050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5430,7 +5462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4859467558549068}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLCollarbone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5447,7 +5479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4757102801039410}
   - component: {fileID: 137651506808638638}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5463,7 +5495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4472648674509982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5479,7 +5511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4669203687903546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlLDigit13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5495,7 +5527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4609007508087394}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRLegPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5511,7 +5543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4382626817925232}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmPalm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5527,7 +5559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4342712682553922}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlSpine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5543,7 +5575,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4007569680617954}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5559,7 +5591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4846157724205374}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmDigit31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5575,7 +5607,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4275144818735606}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlNeck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5591,7 +5623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4206651916350242}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlRArmUpperarm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5607,7 +5639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4671459085931346}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DemonGirlNeck2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5990,7 +6022,8 @@ Transform:
   m_LocalPosition: {x: -0.083, y: -0.023, z: -0.033}
   m_LocalScale: {x: 3.8580198, y: 3.8581378, z: 3.8580809}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1949225557}
   m_Father: {fileID: 4382626817925232}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4422327505271936
@@ -7660,9 +7693,9 @@ MonoBehaviour:
   ability1: 113
   ability1Canvas: {fileID: 179133036}
   skillShot: {fileID: 815971664}
-  player: {fileID: 178765847}
-  abilityImage2: {fileID: 796034870}
-  cooldown2: 5
+  player: {fileID: 4104615375039472}
+  abilityImage2: {fileID: 1314927635}
+  cooldown2: 10
   ability2: 119
   targetCircle: {fileID: 796034870}
   indicatorRangeCircle: {fileID: 1639663247}
@@ -7685,13 +7718,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroAttackType: 0
   targetedEnemy: {fileID: 0}
-  attackRange: 3
+  attackRange: 2
   rotateSpeedForAttack: 0.075
   statsScript: {fileID: 0}
   basicAtkIdle: 0
-  isPlayerAlive: 0
-  performNomalAttack: 1
+  isPlayerAlive: 1
+  performNormalAttack: 1
   enemyAnimator: {fileID: 443648894}
+  performRangedAttack: 1
+  rangedPrefab: {fileID: 1900756431413560, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+  spawnSkill1: {fileID: 1949225557}
+  attackRanged: 10
+  performMage: 1
+  magePrefab: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
+  attackMage: 1
+  performHealth: 1
+  healthPrefab: {fileID: 100004, guid: d9751637d4fc2de40a234b45e10cb88d, type: 3}
 --- !u!114 &4150466518794584607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7708,7 +7750,19 @@ MonoBehaviour:
   health: 100
   attackDmg: 5
   attackSpeed: 1
-  attackTime: 0.1
+  attackTime: 20
+--- !u!114 &4150466518794584608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639817643767468}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d577c1a75e35a4eab4633bd8969660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

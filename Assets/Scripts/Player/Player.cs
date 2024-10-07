@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     private PlayerCombat _playerCombatScipt;
     public NavMeshAgent Agent { get => _agent; private set => _agent = value; }
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +32,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && _playerCombatScipt.isPlayerAlive)
         {
             RaycastHit hit;
             // Check if raycast hit st 

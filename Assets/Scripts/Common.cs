@@ -9,6 +9,9 @@ public class Common
     public static string enemy = "Enemy";
     public static string player = "Player";
     public static string normalAttack = "NormalAttack";
+    public static string rangedAttack = "RangedAttack";
+    public static string recoverHP = "RecoverHP";
+    public static string mageAttack = "MageAttack";
     public static string getHit = "GetHit";
     public static string die = "Die";
 }

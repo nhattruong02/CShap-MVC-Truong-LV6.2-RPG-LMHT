@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Stats : MonoBehaviour
 {
@@ -9,23 +10,47 @@ public class Stats : MonoBehaviour
     public float attackDmg;
     [SerializeField] float attackSpeed;
     public float attackTime;
-    PlayerCombat playerCombat;
-
-
+    private Animator animator;
+    private PlayerCombat playerCombat;
+    private EnemyCombat enemyCombat;
     // Start is called before the first frame update
     void Start()
     {
-        playerCombat = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>();
+        playerCombat = GameObject.FindGameObjectWithTag(Common.player).GetComponent<PlayerCombat>();
+        enemyCombat = GameObject.FindGameObjectWithTag(Common.enemy).GetComponent<EnemyCombat>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(GameObject target, float damage)
     {
-        if(health <= 0)
+        target.GetComponent<Stats>().health -= damage;
+        if (target.GetComponent<Stats>().health <= 0 && target.CompareTag(Common.enemy))
         {
-/*            Destroy(gameObject);
-*/            playerCombat.targetedEnemy = null;
-            playerCombat.performNomalAttack = false;
+            target.gameObject.GetComponent<Animator>().SetTrigger(Common.die);
+            enemyCombat.isEnemyAlive = false;
+            playerCombat.targetedEnemy = null;
+            enemyCombat.performNomalAttack = false;
+            StartCoroutine(DestroyAfterTime(target));
         }
+        if (target.GetComponent<Stats>().health <= 0 && target.CompareTag(Common.player))
+        {
+            target.gameObject.GetComponent<Animator>().SetTrigger(Common.die);
+            enemyCombat.targetedPlayer = null;
+            playerCombat.performNormalAttack = false;
+            playerCombat.isPlayerAlive = false;
+        }
+
+    }
+    IEnumerator DestroyAfterTime(GameObject target)
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(target);
+    }
+    public void RecoveryHPPlayer(GameObject player, float hp)
+    {
+        if (health >= maxHealth)
+            health = maxHealth;
+        if (health < maxHealth && health > 0)
+            player.GetComponent<Stats>().health += hp;
     }
 }

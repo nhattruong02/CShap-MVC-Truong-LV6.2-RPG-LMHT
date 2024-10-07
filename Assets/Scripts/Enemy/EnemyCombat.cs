@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
     [SerializeField] float rotateVelocity;
-    public Transform targetedPlayer;
+    public GameObject targetedPlayer;
     public float attackRange;
     public float rotateSpeedForAttack;
 
@@ -13,8 +13,10 @@ public class EnemyCombat : MonoBehaviour
     public Stats statsScript;
     private Animator _animator;
 
-    public bool isPlayerAlive;
+    public bool isEnemyAlive = true;
     public bool performNomalAttack = true;
+    private Stats _stats;
+    
 
     [SerializeField] private Animator playerAnimator;
 
@@ -29,27 +31,32 @@ public class EnemyCombat : MonoBehaviour
         _enemyScript = GetComponent<Enemy>();
         statsScript = GetComponent<Stats>();
         _animator = GetComponent<Animator>();
+        _stats = GetComponent<Stats>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(this.gameObject.transform.position, targetedPlayer.transform.position) < _enemyScript.moveRadius)
+        if (isEnemyAlive && targetedPlayer != null)
         {
-            _enemyScript.Agent.SetDestination(targetedPlayer.transform.position);
-            _enemyScript.Agent.stoppingDistance = attackRange;
-
-            Quaternion rotationToLookAt = Quaternion.LookRotation(targetedPlayer.transform.position - transform.position);
-            float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y,
-                rotationToLookAt.eulerAngles.y,
-                ref rotateVelocity,
-                rotateSpeedForAttack * (Time.deltaTime * 5));
-            transform.eulerAngles = new Vector3(0, rotationY, 0);
-            if (Vector3.Distance(this.gameObject.transform.position, targetedPlayer.transform.position) < attackRange)
+            if (Vector3.Distance(this.gameObject.transform.position, targetedPlayer.transform.position) < _enemyScript.moveRadius)
             {
-                if (performNomalAttack)
+                _enemyScript.Agent.SetDestination(targetedPlayer.transform.position);
+                _enemyScript.Agent.stoppingDistance = attackRange;
+
+                Quaternion rotationToLookAt = Quaternion.LookRotation(targetedPlayer.transform.position - transform.position);
+                float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y,
+                    rotationToLookAt.eulerAngles.y,
+                    ref rotateVelocity,
+                    rotateSpeedForAttack * (Time.deltaTime * 5));
+                transform.eulerAngles = new Vector3(0, rotationY, 0);
+
+                if (Vector3.Distance(this.gameObject.transform.position, targetedPlayer.transform.position) < attackRange)
                 {
-                    StartCoroutine(NormalAttackInterval());
+                    if (performNomalAttack)
+                    {
+                        StartCoroutine(NormalAttackInterval());
+                    }
                 }
             }
         }
@@ -62,7 +69,7 @@ public class EnemyCombat : MonoBehaviour
         _animator.SetTrigger(Common.normalAttack);
         if (targetedPlayer == null)
         {
-            performNomalAttack = true;
+            performNomalAttack = false;
         }
         yield return new WaitForSeconds(statsScript.attackTime / ((100 + statsScript.attackTime) * 0.01f));
         performNomalAttack = true;
@@ -74,12 +81,14 @@ public class EnemyCombat : MonoBehaviour
     {
         if (targetedPlayer != null)
         {
-            if (targetedPlayer.CompareTag(Common.player))
+            if (targetedPlayer.GetComponent<Targetable>().CompareTag(Common.player))
             {
-                targetedPlayer.GetComponent<Stats>().health -= statsScript.attackDmg;
+                _enemyScript.transform.rotation = targetedPlayer.transform.rotation;
+                _stats.TakeDamage(targetedPlayer, _stats.attackDmg);
                 playerAnimator.SetTrigger(Common.getHit);
             }
         }
         performNomalAttack = true;
+
     }
 }

@@ -12,9 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float waitTime = 2f;
     private float timer;
     bool isMove = true;
-    /*    bool isSitting;
-    */
-    bool isChasing = false;
+    EnemyCombat _enemyCombat;
 
     [SerializeField] Transform _playerTransform;
 
@@ -24,12 +22,13 @@ public class Enemy : MonoBehaviour
     {
         timer = waitTime;
         _agent = GetComponent<NavMeshAgent>();
+        _enemyCombat = GetComponent<EnemyCombat>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isMove && !isChasing)
+        if (isMove && _enemyCombat.isEnemyAlive)
         {
             timer += Time.deltaTime;
             if (timer >= waitTime)
@@ -39,6 +38,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
     void MoveToRandomPosition()
     {
 

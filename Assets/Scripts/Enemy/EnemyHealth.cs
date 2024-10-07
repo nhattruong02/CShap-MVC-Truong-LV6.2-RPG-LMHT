@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _statsScript = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Stats>();
+        _statsScript = GameObject.FindGameObjectWithTag(Common.enemy).GetComponent<Stats>();
         _enemySlider.maxValue = _statsScript.maxHealth;
         _statsScript.health = _statsScript.maxHealth;
     }

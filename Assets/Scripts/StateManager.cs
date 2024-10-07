@@ -9,7 +9,7 @@ public class StateManager : MonoBehaviour
     private void Awake()
     {
         Instant = this;
-        DontDestroyOnLoad(this.gameObject);
+/*        DontDestroyOnLoad(this.gameObject);*/
     }
     public void ChangeState(IState state)
     {
