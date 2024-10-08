@@ -83,7 +83,6 @@ public class EnemyCombat : MonoBehaviour
         {
             if (targetedPlayer.GetComponent<Targetable>().CompareTag(Common.player))
             {
-                _enemyScript.transform.rotation = targetedPlayer.transform.rotation;
                 _stats.TakeDamage(targetedPlayer, _stats.attackDmg);
                 playerAnimator.SetTrigger(Common.getHit);
             }

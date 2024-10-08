@@ -10,15 +10,13 @@ public class Stats : MonoBehaviour
     public float attackDmg;
     [SerializeField] float attackSpeed;
     public float attackTime;
-    private Animator animator;
     private PlayerCombat playerCombat;
     private EnemyCombat enemyCombat;
     // Start is called before the first frame update
     void Start()
     {
-        playerCombat = GameObject.FindGameObjectWithTag(Common.player).GetComponent<PlayerCombat>();
-        enemyCombat = GameObject.FindGameObjectWithTag(Common.enemy).GetComponent<EnemyCombat>();
-        animator = GetComponent<Animator>();
+        playerCombat = this.GetComponent<PlayerCombat>();
+        enemyCombat = this.GetComponent<EnemyCombat>();
     }
 
     public void TakeDamage(GameObject target, float damage)
@@ -27,17 +25,17 @@ public class Stats : MonoBehaviour
         if (target.GetComponent<Stats>().health <= 0 && target.CompareTag(Common.enemy))
         {
             target.gameObject.GetComponent<Animator>().SetTrigger(Common.die);
-            enemyCombat.isEnemyAlive = false;
+            target.gameObject.GetComponent<EnemyCombat>().isEnemyAlive = false;
             playerCombat.targetedEnemy = null;
-            enemyCombat.performNomalAttack = false;
+            target.gameObject.GetComponent<EnemyCombat>().performNomalAttack = false;
             StartCoroutine(DestroyAfterTime(target));
         }
         if (target.GetComponent<Stats>().health <= 0 && target.CompareTag(Common.player))
         {
-            target.gameObject.GetComponent<Animator>().SetTrigger(Common.die);
             enemyCombat.targetedPlayer = null;
-            playerCombat.performNormalAttack = false;
-            playerCombat.isPlayerAlive = false;
+            target.gameObject.GetComponent<PlayerCombat>().performNormalAttack = false;
+            target.gameObject.GetComponent<PlayerCombat>().isPlayerAlive = false;
+            target.gameObject.GetComponent<Animator>().SetTrigger(Common.die);
         }
 
     }

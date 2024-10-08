@@ -23,11 +23,7 @@ public class Abilities : MonoBehaviour
     bool isCooldown2 = false;
     public KeyCode ability2;
 
-    public Image targetCircle;
     public Image indicatorRangeCircle;
-    public Canvas ability2Canvas;
-    private Vector3 posUp;
-    public float maxAbility2Distance;
 
 
     [Header("Ability 3")]
@@ -46,8 +42,8 @@ public class Abilities : MonoBehaviour
 
         playerCombat = gameObject.GetComponent<PlayerCombat>();
         skillShot.GetComponent<Image>().enabled = false;
-        targetCircle.GetComponent<Image>().enabled = false;
-        indicatorRangeCircle.GetComponent<Image>().enabled = false;
+/*        targetCircle.GetComponent<Image>().enabled = false;
+*/        indicatorRangeCircle.GetComponent<Image>().enabled = false;
 
     }
 
@@ -68,33 +64,11 @@ public class Abilities : MonoBehaviour
                 position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
             }
 
-            //Ability 2 Inputs
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                posUp = new Vector3(hit.point.x, 0, hit.point.z);
-                position = hit.point;
-            }
-
             //Ability 1 Canvas
             Quaternion transRot = Quaternion.LookRotation(position - player.transform.position);
             transRot.eulerAngles = new Vector3(0, transRot.eulerAngles.y, transRot.eulerAngles.z);
             ability1Canvas.transform.rotation = Quaternion.Lerp(transRot, ability1Canvas.transform.rotation, 0f);
 
-            //Ability 2 Canvas
-            int layerMask = LayerMask.GetMask(Common.player);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
-            {
-                if (hit.collider.gameObject != this.gameObject)
-                {
-                    position = hit.point;
-                }
-            }
-            var hitPosDir = (hit.point - transform.position).normalized;
-            float distance = Vector3.Distance(hit.point, transform.position);
-            distance = Mathf.Min(distance, maxAbility2Distance);
-
-            var newHitPos = transform.position + hitPosDir * distance;
-            ability2Canvas.transform.position = newHitPos;
         }
     }
 
@@ -106,8 +80,8 @@ public class Abilities : MonoBehaviour
         }
         if (Input.GetKeyDown(ability1) && isCooldown1 == false)
         {
+            
             indicatorRangeCircle.enabled = true;
-            targetCircle.GetComponent<Image>().enabled = false;
             playerCombat.heroAttackType = PlayerCombat.PlayerAttackType.Ranged;
             if (playerCombat.targetedEnemy != null &&
             Vector3.Distance(playerCombat.transform.position, playerCombat.targetedEnemy.transform.position) <= playerCombat.attackRange)

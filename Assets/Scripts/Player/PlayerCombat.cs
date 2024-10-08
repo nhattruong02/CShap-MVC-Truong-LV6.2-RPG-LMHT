@@ -87,7 +87,7 @@ public class PlayerCombat : MonoBehaviour
                     _playerScript.Agent.stoppingDistance = attackRange;
                 }
             }
-            if(heroAttackType == PlayerAttackType.Mage)
+            if (heroAttackType == PlayerAttackType.Mage)
             {
                 if (performMage)
                 {
@@ -148,11 +148,10 @@ public class PlayerCombat : MonoBehaviour
     {
         if (targetedEnemy != null)
         {
-            if (targetedEnemy.GetComponent<Targetable>().CompareTag(Common.enemy) )
+            if (targetedEnemy.GetComponent<Targetable>().CompareTag(Common.enemy))
             {
                 _playerScript.transform.rotation = targetedEnemy.transform.rotation;
                 statsScript.TakeDamage(targetedEnemy, statsScript.attackDmg);
-                enemyAnimator.SetTrigger(Common.getHit);
             }
         }
         performNormalAttack = true;
@@ -166,6 +165,7 @@ public class PlayerCombat : MonoBehaviour
             if (targetedEnemy.GetComponent<Targetable>().CompareTag(Common.enemy))
             {
                 _playerScript.transform.rotation = targetedEnemy.transform.rotation;
+                _playerScript.Agent.stoppingDistance = attackRange;
                 spawnRangedAttack(targetedEnemy);
             }
         }
@@ -198,13 +198,14 @@ public class PlayerCombat : MonoBehaviour
 
     private void spawnMageAttack(GameObject targetedEnemy)
     {
-        Instantiate(magePrefab);
         magePrefab.GetComponent<Skill3>().target = targetedEnemy;
+        Instantiate(magePrefab);
     }
 
     private void spawnRangedAttack(GameObject targetedEnemy)
     {
-        Instantiate(rangedPrefab, spawnSkill1.transform.position, Quaternion.identity);
         rangedPrefab.GetComponent<Skill1>().target = targetedEnemy;
+        Instantiate(rangedPrefab, spawnSkill1.transform.position, Quaternion.identity);
+       
     }
 }

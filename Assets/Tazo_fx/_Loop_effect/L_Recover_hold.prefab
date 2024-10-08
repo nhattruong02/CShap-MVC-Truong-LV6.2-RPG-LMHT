@@ -14572,7 +14572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e52592ed84b9248915b42305c28f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 5
   player: {fileID: 0}
 --- !u!1 &100006
 GameObject:
