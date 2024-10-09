@@ -42,8 +42,9 @@ public class Abilities : MonoBehaviour
 
         playerCombat = gameObject.GetComponent<PlayerCombat>();
         skillShot.GetComponent<Image>().enabled = false;
-/*        targetCircle.GetComponent<Image>().enabled = false;
-*/        indicatorRangeCircle.GetComponent<Image>().enabled = false;
+        /*        targetCircle.GetComponent<Image>().enabled = false;
+        */
+        indicatorRangeCircle.GetComponent<Image>().enabled = false;
 
     }
 
@@ -80,7 +81,7 @@ public class Abilities : MonoBehaviour
         }
         if (Input.GetKeyDown(ability1) && isCooldown1 == false)
         {
-            
+
             indicatorRangeCircle.enabled = true;
             playerCombat.heroAttackType = PlayerCombat.PlayerAttackType.Ranged;
             if (playerCombat.targetedEnemy != null &&

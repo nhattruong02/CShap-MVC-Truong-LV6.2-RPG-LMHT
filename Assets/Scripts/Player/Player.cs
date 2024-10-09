@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();    
+        _agent = GetComponent<NavMeshAgent>();
         _playerCombatScipt = GetComponent<PlayerCombat>();
     }
 

@@ -2529,6 +2529,10 @@ PrefabInstance:
       propertyPath: targetedPlayer
       value: 
       objectReference: {fileID: 1639817643767468}
+    - target: {fileID: 2385239091562631005, guid: e1b70e1700affe3418ff79ebac7a8798, type: 3}
+      propertyPath: _health
+      value: 
+      objectReference: {fileID: 1322357807}
     - target: {fileID: 4876558451251989558, guid: e1b70e1700affe3418ff79ebac7a8798, type: 3}
       propertyPath: m_Name
       value: GruntHP (8)

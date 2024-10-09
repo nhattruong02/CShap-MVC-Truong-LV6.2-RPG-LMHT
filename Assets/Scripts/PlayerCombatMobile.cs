@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombatMobile : MonoBehaviour
 {
     public enum PlayerAttackType { NormalAttack, Ranged, Heath, Mage };
     public PlayerAttackType heroAttackType;
@@ -13,8 +13,8 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange;
     public float rotateSpeedForAttack;
 
-    private Player _playerScript;
-    public Stats statsScript;
+    private PlayerMobile _playerScript;
+    public StatsMobile statsScript;
     private Animator _animator;
     public bool basicAtkIdle = false;
     public bool isPlayerAlive = true;
@@ -37,7 +37,6 @@ public class PlayerCombat : MonoBehaviour
     public bool performHealth = true;
     [SerializeField] GameObject healthPrefab;
 
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -46,10 +45,10 @@ public class PlayerCombat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _playerScript = GetComponent<Player>();
-        statsScript = GetComponent<Stats>();
+        _playerScript = GetComponent<PlayerMobile>();
+        statsScript = GetComponent<StatsMobile>();
         _animator = GetComponent<Animator>();
-        
+
     }
 
     // Update is called once per frame
@@ -57,35 +56,11 @@ public class PlayerCombat : MonoBehaviour
     {
         if (targetedEnemy != null && isPlayerAlive)
         {
-            if (heroAttackType == PlayerAttackType.NormalAttack)
-            {
-                attackRange = 2;
-                if (Vector3.Distance(gameObject.transform.position, targetedEnemy.transform.position) > attackRange)
-                {
-                    _playerScript.Agent.SetDestination(targetedEnemy.transform.position);
-                    _playerScript.Agent.stoppingDistance = attackRange;
-
-                    Quaternion rotationToLookAt = Quaternion.LookRotation(targetedEnemy.transform.position - transform.position);
-                    float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y,
-                        rotationToLookAt.eulerAngles.y,
-                        ref _playerScript.rotateVelocity,
-                        rotateSpeedForAttack * (Time.deltaTime * 5));
-                    transform.eulerAngles = new Vector3(0, rotationY, 0);
-                }
-                else
-                {
-                    if (performNormalAttack)
-                    {
-                        StartCoroutine(NormalAttackInterval());
-                    }
-                }
-            }
             if (heroAttackType == PlayerAttackType.Ranged)
             {
                 if (performRangedAttack)
                 {
                     attackRange = attackRanged;
-                    _playerScript.Agent.stoppingDistance = attackRange;
                 }
             }
             if (heroAttackType == PlayerAttackType.Mage)
@@ -93,7 +68,36 @@ public class PlayerCombat : MonoBehaviour
                 if (performMage)
                 {
                     attackRange = attackRanged;
-                    _playerScript.Agent.stoppingDistance = attackRange;
+                }
+            }
+        }
+    }
+
+    private void lookAtEnemy()
+    {
+        Quaternion rotationToLookAt = Quaternion.LookRotation(targetedEnemy.transform.position - transform.position);
+        float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y,
+            rotationToLookAt.eulerAngles.y,
+            ref _playerScript.rotateVelocity,
+            rotateSpeedForAttack * (Time.deltaTime * 5));
+        transform.eulerAngles = new Vector3(0, rotationY, 0);
+    }
+
+    public void NormalAttackButton()
+    {
+        if (targetedEnemy != null && isPlayerAlive)
+        {
+            if (heroAttackType == PlayerAttackType.NormalAttack)
+            {
+                attackRange = 4;
+                performNormalAttack = true;
+                if (Vector3.Distance(gameObject.transform.position, targetedEnemy.transform.position) < attackRange)
+                {
+                    if (performNormalAttack)
+                    {
+                        StartCoroutine(NormalAttackInterval());
+                        lookAtEnemy();
+                    }
                 }
             }
         }
@@ -151,7 +155,6 @@ public class PlayerCombat : MonoBehaviour
         {
             if (targetedEnemy.GetComponent<Targetable>().CompareTag(Common.enemy))
             {
-                _playerScript.transform.rotation = targetedEnemy.transform.rotation;
                 statsScript.TakeDamage(targetedEnemy, statsScript.attackDmg);
             }
         }
@@ -165,7 +168,6 @@ public class PlayerCombat : MonoBehaviour
         {
             if (targetedEnemy.GetComponent<Targetable>().CompareTag(Common.enemy))
             {
-                _playerScript.transform.rotation = targetedEnemy.transform.rotation;
                 _playerScript.Agent.stoppingDistance = attackRange;
                 spawnRangedAttack(targetedEnemy);
             }
@@ -180,7 +182,6 @@ public class PlayerCombat : MonoBehaviour
         {
             if (targetedEnemy.GetComponent<Targetable>().CompareTag(Common.enemy))
             {
-                _playerScript.transform.rotation = targetedEnemy.transform.rotation;
                 spawnMageAttack(targetedEnemy);
             }
         }
@@ -190,7 +191,7 @@ public class PlayerCombat : MonoBehaviour
     //event animator
     public void RecoveryHP()
     {
-        healthPrefab.GetComponent<Skill2>().player = _playerScript.gameObject;
+        healthPrefab.GetComponent<Skill2Mobile>().player = _playerScript.gameObject;
         performHealth = true;
         Instantiate(healthPrefab);
     }
@@ -199,14 +200,14 @@ public class PlayerCombat : MonoBehaviour
 
     private void spawnMageAttack(GameObject targetedEnemy)
     {
-        magePrefab.GetComponent<Skill3>().target = targetedEnemy;
+        magePrefab.GetComponent<Skill3Mobile>().target = targetedEnemy;
         Instantiate(magePrefab);
     }
 
     private void spawnRangedAttack(GameObject targetedEnemy)
     {
-        rangedPrefab.GetComponent<Skill1>().target = targetedEnemy;
+        rangedPrefab.GetComponent<Skill1Mobile>().target = targetedEnemy;
         Instantiate(rangedPrefab, spawnSkill1.transform.position, Quaternion.identity);
-       
+
     }
 }
